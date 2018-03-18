@@ -1,0 +1,1 @@
+export const STORES_FETCHED = 'STORES_FETCHED'

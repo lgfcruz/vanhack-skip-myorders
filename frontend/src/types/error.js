@@ -1,0 +1,1 @@
+export const ERROR_SHOWED = 'ERROR_SHOWED'

@@ -1,0 +1,1 @@
+export const SIDEBAR_FETCHED = 'SIDEBAR_FETCHED'

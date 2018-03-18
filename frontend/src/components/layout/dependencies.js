@@ -1,0 +1,12 @@
+import 'modules/jquery/dist/jquery.min'
+import 'modules/fastclick/lib/fastclick'
+import 'modules/slimscroll/lib/slimscroll'
+import 'modules/admin-lte/node_modules/bootstrap/dist/js/bootstrap.min'
+import 'modules/admin-lte/dist/js/adminlte.min'
+
+import 'modules/admin-lte/node_modules/bootstrap/dist/css/bootstrap.min.css'
+import 'modules/font-awesome/css/font-awesome.min.css'
+import 'modules/ionicons/dist/css/ionicons.min.css'
+import 'modules/admin-lte/dist/css/AdminLTE.min.css'
+import 'modules/admin-lte/dist/css/skins/skin-blue.min.css'
+import 'modules/admin-lte/plugins/iCheck/flat/blue.css'
