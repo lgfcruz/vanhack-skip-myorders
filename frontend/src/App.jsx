@@ -3,15 +3,23 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import './components/layout/dependencies'
 import './App.css'
-
-import { validateToken } from './actions/auth'
-
+import { Container } from 'reactstrap'
 import Header from './components/header'
-import Sidebar from './components/sidebar'
 import Footer from './components/footer'
 import Messages from './components/message'
 
+import { validateToken } from './actions/auth'
+import { getCousines } from './actions/cousines'
+import { getStores } from './actions/stores'
+
+
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.props.getCousines()
+    this.props.getStores()
+  }
 
   componentWillMount() {
     if (this.props.auth.user) {
@@ -21,13 +29,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="wrapper">
+      <div>
         <Header />
-        <Sidebar />
-        <div className="content-wrapper">
+        <Container className="app-main-content">
             {this.props.children}
-        </div>
-        <Footer />
+            <Footer />
+        </Container>
         <Messages />
       </div>
     )
@@ -35,5 +42,5 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({ auth: state.auth })
-const mapDispatchToProps = dispatch => bindActionCreators({ validateToken }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ validateToken, getCousines, getStores }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -5,7 +5,7 @@ import { setMessage } from '../actions/error'
 
 const url = process.env.REACT_APP_SERVER_URL
 
-export function getOrders(id) {
+export const getOrders = id => {
   let url_products = `${url}/Product`
   if ((id !== undefined) && (id !== null) && (id !== '')) {
     url_products = `${url}/Store/${id}/products`
@@ -29,7 +29,7 @@ export function getOrders(id) {
   }
 }
 
-export function addInCart(products) {
+export const addInCart = products => {
     return dispatch => {
         dispatch({type: CART_ADDED, payload: products})
     }

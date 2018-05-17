@@ -5,6 +5,24 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 ## Table of Contents
 
+- Build a solution to use an API to:
+- Authenticate;
+- Add selected products to a cart;
+- Place one or more Orders;
+- Cancel an Order;
+- View the Order’s Status;
+http://api-vanhack-event-sp.azurewebsites.net/
+http://api-vanhack-event-sp.azurewebsites.net/swagger/
+
+
+
+
+http://themes.2the.me/Tavern/2.0.1/index-2.html
+http://ecommerceforest.com/wrap/FoodBingo/demos/BS-4.0.0/FoodBingo/food-listing.html
+http://wrapbootstrap.com/preview/WB0954087
+
+
+
 - [Updating to New Releases](#updating-to-new-releases)
 - [Sending Feedback](#sending-feedback)
 - [Folder Structure](#folder-structure)

@@ -8,6 +8,10 @@ import Help from './containers/help'
 import ErrorPage from './containers/error'
 import NotFound from './containers/notFound'
 import Invoice from './containers/invoice'
+import Privacy from './containers/privacy'
+import Terms from './containers/terms'
+import Contact from './containers/contact'
+import Orders from './containers/orders'
 
 export default props => (
     <App>
@@ -17,6 +21,10 @@ export default props => (
             <Route exact path="/help" component={Help} />
             <Route exact path="/error" component={ErrorPage} />
             <Route exact path="/invoice" component={Invoice} />
+            <Route exact path="/privacy-policy" component={Privacy} />
+            <Route exact path="/terms-of-service" component={Terms} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/:storeName/order" component={Orders} />
             <Route component={NotFound} />
         </Switch>
     </App>

@@ -1,19 +1,21 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
+import {
+  Row,
+  Col
+} from 'reactstrap'
 
 import { getProducts } from '../actions/products'
 import { addInCart } from '../actions/orders'
 
 import Content from '../components/content'
-import Row from '../components/row'
-import Col from '../components/col'
 import Box from '../components/box'
 
-import Visa from '../images/visa.png'
-import MasterCard from '../images/mastercard.png'
-import American from '../images/american-express.png'
-import Paypal from '../images/paypal2.png'
+import Visa from '../assets/images/visa.png'
+import MasterCard from '../assets/images/mastercard.png'
+import American from '../assets/images/american-express.png'
+import Paypal from '../assets/images/paypal2.png'
 
 class Invoice extends Component {
 

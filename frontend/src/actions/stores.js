@@ -1,28 +1,47 @@
-import { STORES_FETCHED } from '../types/stores'
-import {push} from 'react-router-redux'
+import { STORES_FETCHED, STORES_SELECTED } from '../types/stores'
+import { fetchApi } from '../middleware/api'
 
-import { setMessage } from '../actions/error'
+export const getStores = (searchText) => {
+    let queryString = ''
+    if (searchText) {
+        queryString = `/search/${searchText}`
+    }
+    return dispatch => {
+        return fetchApi(`Store${queryString}`)
+        .then(response => {
+            dispatch({
+                type: STORES_FETCHED,
+                payload: response
+            })
+        })
+        .catch(err => {
+            console.error("Failure: ", err);
+        })
+    }
+}
 
-const url = process.env.REACT_APP_SERVER_URL
+export const selectStore = (storeId) => {
+    return dispatch => {
+        return [
+            dispatch({
+                type: STORES_SELECTED,
+                payload: storeId
+            })
+        ]
+    }
+}
 
-export function getStores(id) {
-  let url_stores = `${url}/Store`
-  if ((id !== undefined) && (id !== null) && (id !== '')) {
-    url_stores = `${url}/Cousine/${id}/stores`
-  }
+export const getStoresByCousine = (cousineId) => {
   return dispatch => {
-    fetch(`${url_stores}`).then(response => {
-      if (!response.ok) {
-        throw response.json()
-      }
-      return response.json()
-    }).then(response => {
-      dispatch({type: STORES_FETCHED, payload: response})
-    }).catch(error => {
-      error.then(errorData => {
-        dispatch(setMessage(errorData.message))
-        dispatch(push('/error'))
+      return fetchApi(`Cousine/${cousineId}/stores`)
+      .then(response => {
+          dispatch({
+              type: STORES_FETCHED,
+              payload: response
+          })
       })
-    })
+      .catch(err => {
+          console.error("Failure: ", err);
+      })
   }
 }

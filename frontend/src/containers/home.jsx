@@ -1,31 +1,28 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Content from '../components/content'
 
-import { setBreadcrumbs } from '../actions/breadcrumb'
-import { setSidebarList } from '../actions/sidebar'
-import { setCousineSelected } from '../actions/cousines'
-import Cousines from './cousines'
+import { searchFormDisplay } from '../actions/header'
+
+import Stores from './stores'
 
 class Home extends Component {
 
-  componentWillMount() {
-    this.props.dispatch(setBreadcrumbs())
-    this.props.dispatch(setSidebarList())
-    this.props.dispatch(setCousineSelected(1))
+  constructor(props) {
+    super(props)
+    this.props.searchFormDisplay(true)
   }
 
   render() {
     return (
-      <div>
-        <Content.Header title="&nbsp;"/>
-        <Content>
-          <Cousines />
-        </Content>
-      </div>
+      <Content>
+        <Stores />
+      </Content>
     )
   }
 }
 
-export default connect(state => state)(Home)
+const mapStateToProps = state => ({})
+const mapDispatchToProps = dispatch => bindActionCreators({ searchFormDisplay }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

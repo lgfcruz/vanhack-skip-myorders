@@ -1,31 +1,23 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-
-import { setBreadcrumbs } from '../actions/breadcrumb'
+import { Link } from 'react-router-dom'
 
 import Content from '../components/content'
 
-class NotFound extends Component {
-
-  componentWillMount() {
-    this.props.dispatch(setBreadcrumbs('404 Error Page'))
-  }
-
+export default class NotFound extends Component {
   render() {
     return (
       <div>
-        <Content.Header title="404 Error Page" />
         <Content>
           <div className="error-page">
-            <h2 className="headline text-yellow">404</h2>
+            <h2 className="headline text-warning">404</h2>
             <div className="error-content">
               <h3>
-                <i className="fa fa-warning text-yellow"></i>
+                <i className="fa fa-warning text-warning"></i>
                 Oops! Page not found.
               </h3>
               <p>
                 We could not find the page you were looking for. 
-                Meanwhile, you may <a href="/">return to home</a>.
+                Meanwhile, you may <Link to="/" replace={true}>return to home</Link>.
               </p>
             </div>
           </div>
@@ -34,5 +26,3 @@ class NotFound extends Component {
     )
   }
 }
-
-export default connect(state => state)(NotFound)

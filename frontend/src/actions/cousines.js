@@ -1,30 +1,57 @@
 import { COUSINES_FETCHED, COUSINE_SELECTED } from '../types/cousines'
-import {push} from 'react-router-redux'
+import { SEARCH_SUGGESTED } from '../types/search'
+import { fetchApi } from '../middleware/api'
 
-import { setMessage } from '../actions/error'
+import { getStoresByCousine } from './stores'
+import { fetchTextSearch } from './search'
 
-const url = process.env.REACT_APP_SERVER_URL
-
-export function getCousines() {
-  return dispatch => {
-    fetch(`${url}/Cousine`).then(response => {
-      if (!response.ok) {
-        throw response.json()
-      }
-      return response.json()
-    }).then(response => {
-        dispatch({type: COUSINES_FETCHED, payload: response})
-    }).catch(error => {
-      error.then(errorData => {
-        dispatch(setMessage(errorData.message))
-        dispatch(push('/error'))
-      })
-    })
-  }
+export const getCousines = (searchText) => {
+    let queryString = ''
+    if (searchText) {
+        queryString = `/search/${searchText}`
+    }
+    return dispatch => {
+        return fetchApi(`Cousine${queryString}`)
+        .then(response => {
+            dispatch({
+                type: COUSINES_FETCHED,
+                payload: response
+            })
+        })
+        .catch(err => {
+            console.error("Failure: ", err);
+        })
+    }
 }
 
-export function setCousineSelected(id) {
-  return dispatch => {
-    dispatch({type: COUSINE_SELECTED, payload: id})
-  }
+export const selectCousine = (cousine) => {
+    return dispatch => {
+        return [
+            dispatch(getStoresByCousine(cousine.id)),
+            dispatch({
+                type: COUSINE_SELECTED,
+                payload: cousine.id
+            }),
+            dispatch(fetchTextSearch(cousine.name))
+        ]
+    }
+}
+
+export const getCousinesSuggest = (searchText) => {
+    let queryString = ''
+    if (searchText) {
+        queryString = `/search/${searchText}`
+    }
+    return dispatch => {
+        return fetchApi(`Cousine${queryString}`)
+        .then(response => {
+            dispatch({
+                type: SEARCH_SUGGESTED,
+                payload: response
+            })
+        })
+        .catch(err => {
+            console.error("Failure: ", err);
+        })
+    }
 }

@@ -3,27 +3,29 @@ import { reducer as formReducer } from 'redux-form'
 import { reducer as toastrReducer } from 'react-redux-toastr'
 import { routerReducer } from 'react-router-redux'
 
-import authReducer from './reducers/auth'
+import header from './reducers/header'
+import auth from './reducers/auth'
 import errorReducer from './reducers/error'
-import breadcrumbReducer from './reducers/breadcrumb'
 import sidebarReducer from './reducers/sidebar'
-import cousinesReducer from './reducers/cousines'
-import storesReducer from './reducers/stores'
+import cousines from './reducers/cousines'
+import stores from './reducers/stores'
 import productsReducer from './reducers/products'
 import ordersReducer from './reducers/orders'
+import searchReducer from './reducers/search'
 
 const rootReducer = combineReducers({
-    auth: authReducer,
+    header,
+    auth,
     form: formReducer,
     toastr: toastrReducer,
     errorReducer,
-    breadcrumbReducer,
     sidebarReducer,
-    cousinesReducer,
-    storesReducer,
+    cousines,
+    stores,
     productsReducer,
     ordersReducer,
-    routing: routerReducer
+    routing: routerReducer,
+    search: searchReducer
 })
 
 export default rootReducer

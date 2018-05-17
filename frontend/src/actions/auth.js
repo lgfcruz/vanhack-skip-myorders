@@ -1,4 +1,4 @@
-import { TOKEN_VALIDATED, USER_FETCHED } from '../types/auth'
+import { TOKEN_VALIDATED, FORM_VALIDATED, USER_FETCHED } from '../types/auth'
 import {toastr} from 'react-redux-toastr'
 
 const url = process.env.REACT_APP_SERVER_URL
@@ -33,11 +33,11 @@ export function login(values) {
         })
         .catch(error => {
             return error.json()
-                .then(error => {
+                .then(message => {
                     dispatch([
                         { type: TOKEN_VALIDATED, payload: false }
                     ])
-                    toastr.error('Erro', error.message)
+                    toastr.warning('Warning', message.error)
                 })
         })
     }
@@ -56,5 +56,11 @@ export function validateToken(token) {
         } else {
             dispatch({type: TOKEN_VALIDATED, payload: false})
         }
+    }
+}
+
+export function validateForm(value) {
+    return dispatch => {
+        dispatch({type: FORM_VALIDATED, payload: value})
     }
 }
